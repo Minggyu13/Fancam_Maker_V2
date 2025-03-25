@@ -39,13 +39,11 @@ class FaceDetection:
                 x1, y1, x2, y2 = map(int, face_box)  # 좌표 정수 변환
                 w, h = x2 - x1, y2 - y1  # 너비, 높이 계산
 
-                # 얼굴 영역 추출
                 face = image[y1:y1 + h, x1:x1 + w]
 
-                # 얼굴 크기 조정 (160x160)
                 resized_face = cv2.resize(face, (160, 160))
 
-                # 저장
+
                 face_box_arr.append((x1, y1, w, h))
                 resized_face_arr.append(resized_face)
 
@@ -58,9 +56,3 @@ class FaceDetection:
 
 
             return resized_face_arr
-
-original_image = cv2.imread("/Users/mingyu/Desktop/Fancam_Maker_V2/frame_images/test_jururu.png")
-face_detection = FaceDetection("/Users/mingyu/Desktop/Fancam_Maker_V2/saved_models/isedol_face_detector.pt")
-face_detection_boxes = face_detection.detect_face(original_image, visualize=False)
-original_rgb_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB)
-extracted_face = face_detection.extract_face(face_detection_boxes, original_rgb_image, visualize=True)
