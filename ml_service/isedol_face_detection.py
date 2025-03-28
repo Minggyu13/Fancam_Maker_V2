@@ -31,7 +31,8 @@ class FaceDetection:
         face_box_arr = []
 
         if len(face_boxes) == 0:
-            return None
+
+            return None, None
 
         else:
 
@@ -55,4 +56,4 @@ class FaceDetection:
                     plt.show()
 
 
-            return resized_face_arr
+            return resized_face_arr, face_box_arr
